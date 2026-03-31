@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ lesson.title }} — {{ course.title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <!-- Lesson content -->
+  <div class="col-md-8">
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'course_list' %}">{% trans "Courses" %}</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'course_detail' course.slug %}">{{ course.title }}</a></li>
+        <li class="breadcrumb-item active">{{ lesson.title }}</li>
+      </ol>
+    </nav>
+
+    <h1 class="mb-3">{{ lesson.title }}</h1>
+
+    <!-- Video -->
+    {% if lesson.video_url %}
+    <div class="ratio ratio-16x9 mb-4">
+      {% comment %}Using safe filter for trusted video sources only{% endcomment %}
+      <iframe src="{{ lesson.video_url|safe }}" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen 
+              title="{{ lesson.title|escape }}">
+      </iframe>
+    </div>
+    {% endif %}
+
+    <!-- Content -->
+    {% if lesson.content %}
+    <div class="card shadow-sm mb-4">
+      <div class="card-body">
+        {{ lesson.content|linebreaks }}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- File download -->
+    {% if lesson.file %}
+    <div class="alert alert-secondary d-flex align-items-center">
+      <i class="bi bi-file-earmark-arrow-down fs-4 me-3"></i>
+      <div>
+        <strong>{% trans "Lesson Material" %}</strong><br>
+        <a href="{{ lesson.file.url }}" class="btn btn-sm btn-outline-dark mt-1" download>
+          <i class="bi bi-download"></i> {% trans "Download" %}
+        </a>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Prev / Next navigation -->
+    <div class="d-flex justify-content-between mt-4">
+      {% with lessons|dictsort:"order" as sorted_lessons %}
+        {% for l in sorted_lessons %}
+          {% if l == lesson %}
+            {% if not forloop.first %}
+              {% with sorted_lessons|slice:forloop.counter0 as prev_list %}
+                {% with prev_list|last as prev %}
+                  <a href="{% url 'lesson_detail' course.slug prev.slug %}" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> {% trans "Previous" %}
+                  </a>
+                {% endwith %}
+              {% endwith %}
+            {% else %}
+              <span></span>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% for l in sorted_lessons %}
+          {% if l == lesson %}
+            {% if not forloop.last %}
+              {% with sorted_lessons|slice:forloop.counter as next_list %}
+                {% with next_list|first as nxt %}
+                  <a href="{% url 'lesson_detail' course.slug nxt.slug %}" class="btn btn-primary ms-auto">
+                    {% trans "Next" %} <i class="bi bi-arrow-right"></i>
+                  </a>
+                {% endwith %}
+              {% endwith %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endwith %}
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="col-md-4">
+    <div class="card shadow-sm lesson-sidebar">
+      <div class="card-header bg-dark text-white">
+        <i class="bi bi-list-ul"></i> {{ course.title }}
+      </div>
+      <ul class="list-group list-group-flush">
+        {% for l in lessons %}
+        <li class="list-group-item {% if l == lesson %}bg-primary bg-opacity-10 fw-bold{% endif %}">
+          <a href="{% url 'lesson_detail' course.slug l.slug %}"
+             class="text-decoration-none {% if l == lesson %}text-primary{% else %}text-dark{% endif %}">
+            <span class="text-muted me-2">{{ forloop.counter }}.</span>
+            {{ l.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

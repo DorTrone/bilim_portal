@@ -1,0 +1,201 @@
+# Turkmen translations for Science Portal
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tk\n"
+
+msgid "Science Portal"
+msgstr "Bilim Portaly"
+
+msgid "Courses"
+msgstr "Kurslar"
+
+msgid "Login"
+msgstr "Giriş"
+
+msgid "Logout"
+msgstr "Çykyş"
+
+msgid "Register"
+msgstr "Hasap açmak"
+
+msgid "Browse Courses"
+msgstr "Kurslara göz gezdirmek"
+
+msgid "Featured Courses"
+msgstr "Öne çykarylan kurslar"
+
+msgid "View Course"
+msgstr "Kursy görmek"
+
+msgid "All Courses"
+msgstr "Ähli kurslar"
+
+msgid "All Categories"
+msgstr "Ähli kategoriýalar"
+
+msgid "All Levels"
+msgstr "Ähli derejeleri"
+
+msgid "Newest"
+msgstr "Iň täze"
+
+msgid "Oldest"
+msgstr "Iň köne"
+
+msgid "Search courses..."
+msgstr "Kurslary gözle..."
+
+msgid "No courses found. Try adjusting your search."
+msgstr "Kurs tapylmady. Gözlegi üýtgedip görüň."
+
+msgid "No courses published yet."
+msgstr "Heniz kurs çap edilmedi."
+
+msgid "lessons"
+msgstr "sapak"
+
+msgid "enrolled"
+msgstr "ýazgyly"
+
+msgid "Enroll Now"
+msgstr "Häzir ýazyl"
+
+msgid "Login to Enroll"
+msgstr "Ýazylmak üçin giriş ediň"
+
+msgid "Enrolled"
+msgstr "Ýazgyly"
+
+msgid "Lessons"
+msgstr "Sapaklar"
+
+msgid "No lessons yet."
+msgstr "Heniz sapak ýok."
+
+msgid "Lesson Material"
+msgstr "Sapak Materialy"
+
+msgid "Download"
+msgstr "Ýükle"
+
+msgid "Previous"
+msgstr "Öňki"
+
+msgid "Next"
+msgstr "Indiki"
+
+msgid "My Profile"
+msgstr "Meniň profilim"
+
+msgid "My Courses"
+msgstr "Meniň kurslarym"
+
+msgid "Member since"
+msgstr "Agzalyk başlanan wagty"
+
+msgid "Continue Learning"
+msgstr "Öwrenmegi davom etdirmek"
+
+msgid "You haven't enrolled in any courses yet."
+msgstr "Heniz hiç bir kursa ýazylmadyňyz."
+
+msgid "Browse courses"
+msgstr "Kurslara göz aýla"
+
+msgid "Create Account"
+msgstr "Hasap döret"
+
+msgid "Already have an account?"
+msgstr "Hasabyňyz barmy?"
+
+msgid "Invalid username or password."
+msgstr "Ýalňyş ulanyjy ady ýa-da parol."
+
+msgid "No account?"
+msgstr "Hasap ýokmy?"
+
+msgid "Beginner"
+msgstr "Başlangyç"
+
+msgid "Intermediate"
+msgstr "Orta dereje"
+
+msgid "Advanced"
+msgstr "Ýokary dereje"
+
+msgid "Welcome! Your account was created."
+msgstr "Hoş geldiňiz! Hasabyňyz döredildi."
+
+msgid "Please enroll in the course first."
+msgstr "Ilki bilen kursa ýazylyň."
+
+msgid "You are already enrolled."
+msgstr "Siz eýýäm ýazylypsyňyz."
+
+msgid "Explore science courses. Learn at your own pace."
+msgstr "Ylym kurslaryny öwreniň. Öz depginiňizde öwreniň."
+
+msgid "See all courses"
+msgstr "Ähli kurslary gör"
+
+msgid "bio"
+msgstr "Gysgaça maglumat"
+
+msgid "user"
+msgstr "ulanyjy"
+
+msgid "users"
+msgstr "ulanyjylar"
+
+msgid "category"
+msgstr "kategoriýa"
+
+msgid "categories"
+msgstr "kategoriýalar"
+
+msgid "title"
+msgstr "at"
+
+msgid "description"
+msgstr "düşündiriş"
+
+msgid "instructor"
+msgstr "mugallym"
+
+msgid "level"
+msgstr "dereje"
+
+msgid "published"
+msgstr "çap edildi"
+
+msgid "course"
+msgstr "kurs"
+
+msgid "courses"
+msgstr "kurslar"
+
+msgid "content"
+msgstr "mazmuny"
+
+msgid "video URL"
+msgstr "wideo salgysy"
+
+msgid "file"
+msgstr "faýl"
+
+msgid "lesson"
+msgstr "sapak"
+
+msgid "Email"
+msgstr "E-poçta"
+
+msgid "Username"
+msgstr "Ulanyjy ady"
+
+msgid "Password"
+msgstr "Parol"
+
+DEBUG = True
+SECRET_KEY = 'django-insecure-science-portal-dev-key-change-in-production'

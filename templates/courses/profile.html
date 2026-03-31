@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My Profile" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4 mb-4">
+    <div class="card shadow-sm text-center p-4">
+      {% if user.avatar %}
+        <img src="{{ user.avatar.url }}" class="rounded-circle mb-3" width="100" height="100" alt="">
+      {% else %}
+        <div class="bg-secondary text-white rounded-circle d-inline-flex align-items-center justify-content-center mx-auto mb-3"
+             style="width:80px;height:80px;font-size:2rem">
+          {{ user.username|first|upper }}
+        </div>
+      {% endif %}
+      <h4>{{ user.get_full_name|default:user.username }}</h4>
+      <p class="text-muted">{{ user.email }}</p>
+      {% if user.bio %}
+        <p class="small">{{ user.bio }}</p>
+      {% endif %}
+      <hr>
+      <small class="text-muted">
+        {% trans "Member since" %} {{ user.date_joined|date:"N Y" }}
+      </small>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <h2 class="mb-3">{% trans "My Courses" %}</h2>
+    {% if enrollments %}
+    <div class="row g-3">
+      {% for enrollment in enrollments %}
+      <div class="col-md-6">
+        <div class="card h-100 course-card shadow-sm">
+          {% if enrollment.course.thumbnail %}
+            <img src="{{ enrollment.course.thumbnail.url }}" class="card-img-top"
+                 style="height:130px;object-fit:cover" alt="">
+          {% else %}
+            <div class="card-img-top bg-dark d-flex align-items-center justify-content-center"
+                 style="height:130px">
+              <i class="bi bi-journal-code text-white fs-1"></i>
+            </div>
+          {% endif %}
+          <div class="card-body">
+            <h6 class="card-title">{{ enrollment.course.title }}</h6>
+            <small class="text-muted">
+              {% trans "Enrolled" %}: {{ enrollment.enrolled_at|date:"d M Y" }}
+            </small>
+          </div>
+          <div class="card-footer bg-transparent">
+            <a href="{% url 'course_detail' enrollment.course.slug %}" class="btn btn-sm btn-outline-primary w-100">
+              {% trans "Continue Learning" %}
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+      {% trans "You haven't enrolled in any courses yet." %}
+      <a href="{% url 'course_list' %}">{% trans "Browse courses" %}</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
