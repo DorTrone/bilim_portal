@@ -134,13 +134,15 @@ REST_FRAMEWORK = {
 }
 
 # Security settings
-# Only redirect to HTTPS in production (when DEBUG=False AND not localhost)
-SECURE_SSL_REDIRECT = not DEBUG and not any(host in ALLOWED_HOSTS for host in ('localhost', '127.0.0.1'))
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
+# Only enable HTTPS features in production with a real domain
+is_production = not DEBUG and not any(host in ALLOWED_HOSTS for host in ('localhost', '127.0.0.1', '192.168.'))
+
+SECURE_SSL_REDIRECT = is_production
+SESSION_COOKIE_SECURE = is_production
+CSRF_COOKIE_SECURE = is_production
+SECURE_HSTS_SECONDS = 31536000 if is_production else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = is_production
+SECURE_HSTS_PRELOAD = is_production
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
